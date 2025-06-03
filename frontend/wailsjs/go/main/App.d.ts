@@ -7,3 +7,7 @@ export function GetAppVersion():Promise<string>;
 export function Greet(arg1:string):Promise<string>;
 
 export function MssqlQuery(arg1:string,arg2:string,arg3:string,arg4:string,arg5:string):Promise<main.QueryResult>;
+
+export function PostgresGetDatabases(arg1:string,arg2:string,arg3:string):Promise<Array<string>>;
+
+export function PostgresQuery(arg1:string,arg2:string,arg3:string,arg4:string,arg5:string):Promise<main.QueryResult>;

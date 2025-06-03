@@ -1,8 +1,9 @@
 export namespace main {
 	
 	export class QueryResult {
-	    result: {[key: string]: string}[];
+	    result: any[];
 	    columns: string[];
+	    ms: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new QueryResult(source);
@@ -12,6 +13,7 @@ export namespace main {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.result = source["result"];
 	        this.columns = source["columns"];
+	        this.ms = source["ms"];
 	    }
 	}
 
