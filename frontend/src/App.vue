@@ -21,9 +21,9 @@ const defaultSettings = {
     query: 'SELECT GETDATE();\n\n'
   },
   postgres: {
-    server: '172.21.173.107',
+    server: 'localhost',
     username: 'postgres',
-    password: '',
+    password: '314272',
     query: 'SELECT NOW();\n\n'
   }
 };
@@ -57,14 +57,12 @@ watch(() => data.dbType, (newType) => {
   const dbTypeValue = newType.value;
   const defaults = defaultSettings[dbTypeValue as keyof typeof defaultSettings];
   
-  // Only update if the current values match the defaults of the previous type
-  // This prevents overwriting user-entered values if they've customized them
+  // Always update the server value when switching database types
+  data.server = defaults.server;
+  
+  // Only update username if it matches the default of the previous type
   const otherType = dbTypeValue === 'mssql' ? 'postgres' : 'mssql';
   const otherDefaults = defaultSettings[otherType];
-  
-  if (data.server === otherDefaults.server) {
-    data.server = defaults.server;
-  }
   
   if (data.username === otherDefaults.username) {
     data.username = defaults.username;
